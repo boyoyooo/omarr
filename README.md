@@ -10,6 +10,15 @@ polls its own lightweight status endpoint for the bar badge (missing count +
 active downloads), and fetches the full library/queue only when you open the
 panel.
 
+![Bar widget: Radarr and Sonarr badges](assets/bar-widget.png)
+
+<table>
+<tr>
+<td><img src="assets/add-search.png" alt="Add tab: search results" width="400"></td>
+<td><img src="assets/add-detail.png" alt="Add tab: expanded detail with quality profile picker" width="400"></td>
+</tr>
+</table>
+
 ## Features
 
 - **Library tab**: browsable, filterable by title, paginated (15/page), with
