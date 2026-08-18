@@ -30,8 +30,7 @@ panel.
 
 - A running Radarr and/or Sonarr instance reachable from the machine running
   Omarchy.
-- An API key for each instance (Settings → General → Security in the Radarr/
-  Sonarr web UI).
+- An API key for each instance.
 
 ## Installation
 
@@ -45,10 +44,39 @@ omarchy plugin add https://github.com/boyoyooo/omarr.git --enable --yes
 omarchy plugin remove io.github.boyoyooo.omarr --yes
 ```
 
-## Configuration
+## Setup
 
-Add one entry per app under the plugin's instances in
-`~/.config/omarchy/shell.json`. Example for both Radarr and Sonarr:
+### 1. Get the API key
+
+In the Radarr or Sonarr web UI: **Settings → General**, scroll to the
+**Security** section, and copy the **API Key** field (it's a long
+alphanumeric string, already generated — nothing to create). Save it to a
+file, outside version control:
+
+```sh
+mkdir -p ~/.config/omarchy/arr
+echo -n "paste-the-api-key-here" > ~/.config/omarchy/arr/radarr-apikey
+chmod 600 ~/.config/omarchy/arr/radarr-apikey
+```
+
+Repeat for Sonarr with its own key/file (e.g. `sonarr-apikey`).
+
+### 2. Find your quality profile ID
+
+The panel's "Add" tab needs a numeric `qualityProfileId`, but the Radarr/
+Sonarr UI only shows profile *names* (**Settings → Profiles**), not their
+IDs. List them with the key you just saved:
+
+```sh
+curl -s -H "X-Api-Key: $(cat ~/.config/omarchy/arr/radarr-apikey)" \
+  http://localhost:7878/api/v3/qualityprofile | jq '.[] | {id, name}'
+```
+
+(swap the URL/key for Sonarr's `http://localhost:8989/api/v3/qualityprofile`).
+Pick the `id` that matches the profile name you use, and use it as
+`qualityProfileId` below.
+
+### 3. Configure the widget instance
 
 ```json
 {
@@ -84,14 +112,6 @@ Add one entry per app under the plugin's instances in
 | `rootFolderPath`    | string | Root folder used when adding                                                                    |
 | `seasonFolder`      | bool   | Sonarr only: use season folders when adding                                                     |
 | `monitorMode`       | string | Sonarr only: monitor mode when adding (`all`, `future`, `missing`, `firstSeason`, `none`, ...) |
-
-Store the API key outside version control, e.g.:
-
-```sh
-mkdir -p ~/.config/omarchy/arr
-echo -n "your-api-key-here" > ~/.config/omarchy/arr/radarr-apikey
-chmod 600 ~/.config/omarchy/arr/radarr-apikey
-```
 
 ## License
 
