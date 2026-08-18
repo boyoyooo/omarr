@@ -10,7 +10,7 @@ polls its own lightweight status endpoint for the bar badge (missing count +
 active downloads), and fetches the full library/queue only when you open the
 panel.
 
-![Bar widget: Radarr and Sonarr badges](assets/bar-widget.png)
+<img src="assets/bar-widget.png" alt="Bar widget: Radarr and Sonarr badges" width="200">
 
 <table>
 <tr>
