@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.boyoyooo.omarr",
+  "name": "omARR",
+  "version": "0.1.0",
+  "author": "boyoyooo",
+  "license": "MIT",
+  "description": "Radarr/Sonarr library, search+add and combined download queue, in the Omarchy bar. Per-episode audio/subtitle language not shown for Sonarr series (would need an API call per series).",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "BarWidget.qml" },
+  "barWidget": {
+    "displayName": "omARR",
+    "description": "Radarr/Sonarr library, add and queue",
+    "category": "Media",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "defaults": {
+      "app": "radarr",
+      "url": "http://localhost:7878",
+      "apiKeyFile": "",
+      "interval": 60,
+      "label": "",
+      "qualityProfileId": 1,
+      "rootFolderPath": "/data",
+      "seasonFolder": true,
+      "monitorMode": "all"
+    },
+    "schema": [
+      { "key": "app",              "type": "string", "label": "App (radarr or sonarr)" },
+      { "key": "url",               "type": "string", "label": "Base URL (http://host:port)" },
+      { "key": "apiKeyFile",        "type": "string", "label": "Path to a file containing just the API key" },
+      { "key": "interval",          "type": "int",    "label": "Refresh interval (seconds)" },
+      { "key": "label",             "type": "string", "label": "Display label" },
+      { "key": "qualityProfileId",  "type": "int",    "label": "Quality profile id used when adding" },
+      { "key": "rootFolderPath",    "type": "string", "label": "Root folder used when adding" },
+      { "key": "seasonFolder",      "type": "bool",   "label": "Sonarr: use season folders when adding" },
+      { "key": "monitorMode",       "type": "string", "label": "Sonarr: monitor mode when adding (all/future/missing/existing/firstSeason/lastSeason/pilot/recent/monitorSpecials/unmonitorSpecials/none)" }
+    ]
+  }
+}
