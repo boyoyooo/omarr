@@ -6,7 +6,7 @@ import qs.Ui
 
 Panel {
   id: root
-  moduleName: "io.github.yelbaz.arr-plus"
+  moduleName: "io.github.boyoyooo.omarr"
   manageIpc: false
 
   property var anchorItem: null
@@ -15,7 +15,7 @@ Panel {
   readonly property string app:      hostWidget ? hostWidget.app : "radarr"
   readonly property string url:      hostWidget ? hostWidget.url : ""
   readonly property string apiKeyFile: hostWidget ? hostWidget.apiKeyFile : ""
-  readonly property string title:    hostWidget ? hostWidget.displayName : "Arr+"
+  readonly property string title:    hostWidget ? hostWidget.displayName : "omARR"
   readonly property bool   fetching: hostWidget ? hostWidget.fetching === true : false
   readonly property int    defaultQualityProfileId: hostWidget ? hostWidget.qualityProfileId : 1
   readonly property string rootFolderPath:   hostWidget ? hostWidget.rootFolderPath : "/data"
@@ -393,9 +393,9 @@ Panel {
 
             Repeater {
               model: [
-                { key: "library", label: "Bibliothèque" },
-                { key: "add",     label: "Ajouter" },
-                { key: "queue",   label: "File" }
+                { key: "library", label: "Library" },
+                { key: "add",     label: "Add" },
+                { key: "queue",   label: "Queue" }
               ]
               delegate: Rectangle {
                 width: tabText.implicitWidth + Style.space(20)
@@ -468,9 +468,9 @@ Panel {
 
               Repeater {
                 model: [
-                  { key: "all",        label: "Tout" },
-                  { key: "downloaded", label: "Téléchargé" },
-                  { key: "missing",    label: "Manquant" }
+                  { key: "all",        label: "All" },
+                  { key: "downloaded", label: "Downloaded" },
+                  { key: "missing",    label: "Missing" }
                 ]
                 delegate: Rectangle {
                   width: filterText.implicitWidth + Style.space(16)
@@ -503,8 +503,8 @@ Panel {
                 readonly property var sortOptions: [
                   { key: "titleAsc",  label: "A→Z" },
                   { key: "titleDesc", label: "Z→A" },
-                  { key: "addedDesc", label: "Récent→Ancien" },
-                  { key: "addedAsc",  label: "Ancien→Récent" }
+                  { key: "addedDesc", label: "Newest→Oldest" },
+                  { key: "addedAsc",  label: "Oldest→Newest" }
                 ]
                 anchors.verticalCenter: parent.verticalCenter
                 showLabel: false
@@ -610,7 +610,7 @@ Panel {
                           Text {
                             visible: modelData.episodeCount !== undefined
                             text: modelData.episodeCount !== undefined
-                              ? modelData.episodeFileCount + "/" + modelData.episodeCount + " ép." : ""
+                              ? modelData.episodeFileCount + "/" + modelData.episodeCount + " ep." : ""
                             color: Util.alpha(root.barForeground, 0.7)
                             font.pixelSize: Style.font.bodySmall
                           }
@@ -641,7 +641,7 @@ Panel {
                         width: libDetailCol.width
                         wrapMode: Text.WordWrap
                         text: modelData.overview && modelData.overview.length
-                          ? modelData.overview : "Pas de synopsis disponible."
+                          ? modelData.overview : "No synopsis available."
                         color: Util.alpha(root.barForeground, 0.85)
                         font.pixelSize: Style.font.bodySmall
                       }
@@ -835,7 +835,7 @@ Panel {
                         iconText: modelData.alreadyAdded || root.addedIds[extId]
                           ? "󰄬" : (root.addBusyIds[extId] ? "…" : (expanded ? "󰅁" : "󰐕"))
                         tooltipText: modelData.alreadyAdded || root.addedIds[extId]
-                          ? "Déjà dans la bibliothèque" : "Configurer et ajouter"
+                          ? "Already in library" : "Configure and add"
                         foreground: root.barForeground
                         fontFamily: root.bar ? root.bar.fontFamily : Style.font.family
                         fontSize: Style.font.icon + 4
@@ -881,7 +881,7 @@ Panel {
                         width: configCol.width
                         wrapMode: Text.WordWrap
                         text: modelData.overview && modelData.overview.length
-                          ? modelData.overview : "Pas de synopsis disponible."
+                          ? modelData.overview : "No synopsis available."
                         color: Util.alpha(root.barForeground, 0.85)
                         font.pixelSize: Style.font.bodySmall
                       }
@@ -901,7 +901,7 @@ Panel {
 
                       Dropdown {
                         width: Style.spacing.dropdownWidth
-                        label: "Profil qualité"
+                        label: "Quality profile"
                         fontFamily: root.bar ? root.bar.fontFamily : Style.font.family
                         options: root.profiles.map(function (p) { return p.name })
                         value: {

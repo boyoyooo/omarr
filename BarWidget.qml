@@ -6,7 +6,7 @@ import qs.Ui
 
 BarWidget {
   id: root
-  moduleName: "io.github.yelbaz.arr-plus"
+  moduleName: "io.github.boyoyooo.omarr"
 
   // --- settings, read from this widget's shell.json entry -------------------
   readonly property string app:           setting("app", "radarr")
