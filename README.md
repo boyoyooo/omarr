@@ -39,6 +39,12 @@ panel.
 omarchy plugin add https://github.com/boyoyooo/omarr.git --enable --yes
 ```
 
+## Removal
+
+```sh
+omarchy plugin remove io.github.boyoyooo.omarr --yes
+```
+
 ## Configuration
 
 Add one entry per app under the plugin's instances in
